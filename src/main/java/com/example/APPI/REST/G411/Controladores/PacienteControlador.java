@@ -27,6 +27,15 @@ public class PacienteControlador {
 
     @GetMapping
     public ResponseEntity<?> buscarTodo() {
-        
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(pacienteServicio.buscarPaciente());
+        } catch (Exception error) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(error.getMessage());
+        }
     }
+
 }

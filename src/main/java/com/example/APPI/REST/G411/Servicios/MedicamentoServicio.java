@@ -19,8 +19,12 @@ public class MedicamentoServicio {
         }
     }
 
-    public Medicamento buscarMedicamento(Medicamento datosMedicamento){
-        return null;
+    public Medicamento buscarMedicamento() throws Exception {
+        try{
+            return (Medicamento) IRepositorioMedicamento.findAll();
+        }catch (Exception error){
+            throw new Exception(error.getMessage());
+        }
     }
 
     public Medicamento buscarMedicamentoId(Medicamento datosMedicamento){

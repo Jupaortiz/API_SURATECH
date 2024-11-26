@@ -19,8 +19,12 @@ public class EnfermedadServicio {
         }
     }
 
-    public Enfermedad buscarEnfermedad(Enfermedad datosEnfermedad){
-        return null;
+    public Enfermedad buscarEnfermedad() throws Exception {
+        try{
+            return (Enfermedad) IRepositorioEnfermedad.findAll();
+        }catch (Exception error){
+            throw new Exception(error.getMessage());
+        }
     }
 
     public Enfermedad buscarEnfermedadId(Enfermedad datosEnfermedad){

@@ -7,10 +7,7 @@ import com.example.APPI.REST.G411.Servicios.SignoVitalServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/signoVital")
@@ -24,6 +21,19 @@ public class signoVitalControlador {
                     .status(HttpStatus.OK)
                     .body(signoVitalServicio.registrarSignoVital(datos));
         }catch (Exception error){
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(error.getMessage());
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<?> buscarTodo() {
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(signoVitalServicio.buscarSignoVital());
+        } catch (Exception error) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body(error.getMessage());
